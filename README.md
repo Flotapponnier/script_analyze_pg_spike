@@ -5,11 +5,6 @@ Extract and analyze pg_activity snapshots from PostgreSQL servers (leader + repl
 ## Quick Start
 
 ```bash
-# 1. Configure SSH credentials (first time only)
-cp .env.example .env
-# Edit .env with your PostgreSQL SSH credentials (pg00/pg01)
-
-# 2. Run the interactive analysis
 ./analyze_spike_interactive.sh
 ```
 
@@ -34,18 +29,6 @@ The script will:
 Output:
 - 4 JSON files (spike + normal for pg00 and pg01)
 - 1 markdown report: `spike_analysis_YYYYMMDD_HHMMSS.md`
-
-## Manual Extraction
-
-If you need to extract data manually from a specific server:
-
-```bash
-./extract_pg_activity_interval.sh <start_time> <end_time> <pg00|pg01> [output_file]
-
-# Examples:
-./extract_pg_activity_interval.sh "2025-10-27T16:00" "2025-10-27T16:05" pg00 spike.json
-./extract_pg_activity_interval.sh "2025-10-27T03:00" "2025-10-27T03:05" pg01 normal.json
-```
 
 ## What the Analysis Reports
 
@@ -129,6 +112,5 @@ spike_analysis_YYYYMMDD_HHMMSS.md                  # Final report
 - Try a different time range
 
 ### SSH Connection Issues
-- Ensure `.env` is configured correctly
 - Test manual SSH: `ssh user@host "ls /var/log/pg-activity-snapshots/"`
 - Check SSH keys are properly configured
